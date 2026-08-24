@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Knowledge Search Chatbot (No-LLM)</title>
+    <meta name="description" content="Local secure semantic search engine and chatbot for incident response policies and banking operations.">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/static/index.css">
+</head>
+<body>
+    <div class="app-container">
+        
+        <!-- LEFT SIDEBAR: KNOWLEDGE BASE -->
+        <aside class="sidebar-left" id="kb-sidebar">
+            <div class="sidebar-header">
+                <div class="logo-area">
+                    <svg class="logo-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"/>
+                        <path d="M12 16v-4"/>
+                        <path d="M12 8h.01"/>
+                    </svg>
+                    <h2>Bank KB Center</h2>
+                </div>
+                <span class="badge" id="search-mode-badge">Initializing...</span>
+            </div>
+            
+            <div class="sidebar-section">
+                <h3>Indexed Documents</h3>
+                <div class="doc-list" id="document-list-container">
+                    <!-- Loaded dynamically via JS -->
+                    <div class="loading-spinner">Loading repository...</div>
+                </div>
+            </div>
+            
+            <div class="sidebar-footer">
+                <div class="system-status">
+                    <div class="status-dot online"></div>
+                    <span>Local Search Engine Active</span>
+                </div>
+            </div>
+        </aside>
+
+        <!-- CENTER PANEL: CHAT WINDOW -->
+        <main class="chat-container">
+            <header class="chat-header">
+                <div class="header-info">
+                    <h1>Semantic Search Chatbot</h1>
+                    <p>Retrieves exact procedures and policies from the secure banking database without LLM hallucinations.</p>
+                </div>
+                <button class="clear-chat-btn" id="btn-clear-chat" title="Clear Chat History">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M3 6h18M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2M10 11v6M14 11v6"/>
+                    </svg>
+                    Clear Chat
+                </button>
+            </header>
+
+            <!-- Messages Area -->
+            <div class="chat-messages" id="chat-messages-container">
+                <!-- Dynamically populated -->
+            </div>
+
+            <!-- Input Form -->
+            <form class="chat-input-area" id="chat-input-form">
+                <div class="input-wrapper">
+                    <input type="text" id="user-query-input" placeholder="Type a search query (e.g. SWIFT transfer limits, database timeout)..." required autocomplete="off">
+                    <button type="submit" id="btn-send-query" title="Send Query">
+                        <svg class="send-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                            <line x1="22" y1="2" x2="11" y2="13"></line>
+                            <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+                        </svg>
+                    </button>
+                </div>
+            </form>
+        </main>
+
+        <!-- RIGHT SIDEBAR: DOCUMENT VIEWER -->
+        <aside class="sidebar-right" id="preview-sidebar">
+            <div class="sidebar-header">
+                <div class="logo-area">
+                    <svg class="doc-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                        <polyline points="14 2 14 8 20 8"/>
+                        <line x1="16" y1="13" x2="8" y2="13"/>
+                        <line x1="16" y1="17" x2="8" y2="17"/>
+                        <polyline points="10 9 9 9 8 9"/>
+                    </svg>
+                    <h2>Document Preview</h2>
+                </div>
+                <button class="close-preview-btn" id="btn-close-preview" title="Close Preview">×</button>
+            </div>
+            
+            <div class="preview-content" id="document-preview-body">
+                <div class="preview-placeholder">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                        <polyline points="14 2 14 8 20 8"/>
+                    </svg>
+                    <p>Click a search result's source link or a file card in the repository list to preview the document contents here.</p>
+                </div>
+            </div>
+        </aside>
+        
+    </div>
+
+    <!-- Script assets -->
+    <script src="/static/index.js"></script>
+</body>
+</html>
